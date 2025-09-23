@@ -1,0 +1,38 @@
+{
+  "name": "panamamovil",
+  "version": "1.0.0",
+  "description": "Sistema técnico para consulta de fichas desde Google Sheets",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "echo \"Agrega ESLint si deseas validar estilo\"",
+    "test": "echo \"No hay tests definidos aún\" && exit 0"
+  },
+  "keywords": [
+    "panama",
+    "movil",
+    "sheets",
+    "express",
+    "consulta",
+    "ficha",
+    "google",
+    "nodejs",
+    "backend"
+  ],
+  "author": "Bryan",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "compression": "^1.8.1",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.36.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2"
+  }
+}
