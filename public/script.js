@@ -5,10 +5,15 @@ input.addEventListener("keydown", e => e.key === "Enter" && buscar());
 const resultado = document.getElementById("resultado");
 const historial = [];
 
-// 🔍 Búsqueda principal desde Web App de Google Sheets
 function buscar() {
-  const valor = input.value.trim().toUpperCase();
-  const alarmaTexto = document.getElementById("alarmaTexto").value.trim();
+  alert("Buscar ejecutado");
+}
+
+
+// 🔍 Búsqueda principal desde backend en Railway
+function buscar() {
+  const valor = document.getElementById("valor").value.trim().toUpperCase();
+  const alarmaTexto = document.getElementById("alarma").value.trim();
   if (!valor) return;
 
   resultado.innerHTML = `
@@ -17,30 +22,30 @@ function buscar() {
       Consultando ficha técnica...
     </div>
   `;
-fetch(`${process.env.SHEET_API}?valor=${valor}`)
 
-
+  fetch(`https://panamamovil.up.railway.app/buscar?q=${valor}`)
     .then(res => {
-      if (!res.ok) throw new Error();
+      if (!res.ok) throw new Error("Respuesta no válida");
       return res.json();
     })
     .then(item => {
-      if (!item || typeof item !== "object" || !item.ID) throw new Error("Respuesta inválida");
+      if (!item || typeof item !== "object" || !item.ID) throw new Error("Sin datos");
 
       const fondo = detectarFondo(item);
-      agregarAlarmaHtml(item, alarmaTexto); // si tienes esta función
+      agregarAlarmaHtml?.(item, alarmaTexto); // si tienes esta función
       mostrarResultado(item, fondo);
       agregarAlHistorial(item, alarmaTexto);
     })
     .catch(() => {
       resultado.innerHTML = `
-        <div class="alert alert-warning mt-3">
-          <i class="bi bi-exclamation-triangle"></i>
+        <div class="alert alert-warning mt-3 text-center">
+          <i class="bi bi-exclamation-triangle me-2"></i>
           No se encontraron datos para <strong>${valor}</strong>
         </div>
       `;
     });
 }
+
 
 // 🎨 Renderizado visual del resultado
 function mostrarResultado(item, fondo) {
