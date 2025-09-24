@@ -327,18 +327,13 @@ input.form-control {
             <div onclick="seleccionarAlarma('RBS, normaliza energía comercial BTS operativa')">RBS, normaliza energía comercial BTS operativa</div>
             <div onclick="seleccionarAlarma('RBS, falla de energía comercial | En Baterías')">RBS, falla de energía comercial | En Baterías</div>
             <div onclick="seleccionarAlarma('RBS, falla de energía comercial | En Generador')">RBS, falla de energía comercial | En Generador</div>
-          <div onclick="seleccionarAlarma('RBS, Heartbeat Failure sin alarmas previas')">RBS, Heartbeat Failure sin alarmas previas</div>
+            <div onclick="seleccionarAlarma('RBS, Heartbeat Failure sin alarmas previas')">RBS, Heartbeat Failure sin alarmas previas</div>
             <div onclick="seleccionarAlarma('RBS, NE is Disconnected sin alarmas previas')">RBS, NE is Disconnected sin alarmas previas</div>
-        <div onclick="seleccionarAlarma('RBS, falla de sectores LTE')">RBS, falla de sectores LTE</div>
-          <div onclick="seleccionarAlarma('RBS, falla de sectores 3G')">RBS, falla de sectores 3G</div>
-         <div onclick="seleccionarAlarma('RBS, falla de sectores 2G')">RBS, falla de sectores 2G</div>
-         <div onclick="seleccionarAlarma('RBS, culmina respaldo')">RBS, culmina respaldo</div>
-        <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-1')">RBS, FieldReplaceableUnit=PSU-1</div>
-       <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-2')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-2</div>
-      <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-3')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-3</div>
-      <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-4')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-4</div>
-     <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-5')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-5</div>
-    </div>
+            <div onclick="seleccionarAlarma('RBS, falla de sectores LTE')">RBS, falla de sectores LTE</div>
+            <div onclick="seleccionarAlarma('RBS, falla de sectores 3G')">RBS, falla de sectores 3G</div>
+            <div onclick="seleccionarAlarma('RBS, falla de sectores 2G')">RBS, falla de sectores 2G</div>
+            <div onclick="seleccionarAlarma('RBS, culmina respaldo')">RBS, culmina respaldo</div>
+            <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-1')">RBS, FieldReplaceableUnit=PSU-1</div>
           </div>
         </div>
         <button class="owner" onclick="buscar()" style="background-color: #00aaff; color: #fff; border: none; padding: 6px 12px; font-weight: bold; cursor: pointer;">Buscar</button>
@@ -375,8 +370,9 @@ input.form-control {
       document.getElementById("btnBuscarOwner").click();
     }
   });
-  
-  // 🔑 Activar búsqueda con Enter
+
+   // 🔑 Activar búsqueda con Enter
+
   document.getElementById("inputOwner").addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
       document.getElementById("btnBuscarOwner").click();
