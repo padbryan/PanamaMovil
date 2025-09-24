@@ -319,7 +319,7 @@ input.form-control {
         <div style="position: relative; flex-grow: 1;" onmouseleave="ocultarMenuAlarma()">
           <input type="text" id="alarma" class="code" placeholder="🖋 Escribir o seleccionar alarma" style="width: 100%; background-color: #222; color: #fff; border: 1px solid #444; padding: 6px 12px;" />
 
-          <span id="iconoDesplegar" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #ccc;" onclick="mostrarMenuAlarma()">🔽</span>
+          <span id="iconoDesplegar" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #ccc;" onclick="mostrarMenuAlarma()">🟦⚪</span>
 
           <div id="menuAlarma" style="position: absolute; top: 100%; left: 0; width: 100%; background-color: #2a2a2a; border: 1px solid #555; border-top: none; color: #f1f1f1; display: none; max-height: 180px; overflow-y: auto; z-index: 1000; font-size: 14px; margin-top: 2px; padding: 6px;">
 
@@ -367,14 +367,7 @@ input.form-control {
     </div>
   </div>
 <script>
-     // 🔑 Activar búsqueda con Enter
-
-  document.getElementById("inputOwner").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-      document.getElementById("btnBuscarOwner").click();
-    }
-  });
-
+   
    // 🔑 Activar búsqueda con Enter
 
   document.getElementById("inputOwner").addEventListener("keypress", function(e) {
