@@ -1,0 +1,28 @@
+body.tema-oscuro {
+  background-color: #000;
+  color: #fff;
+}
+
+body.tema-claro {
+  background-color: #f5f5f5;
+  color: #111;
+}
+
+.menu-config {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 10px;
+  border-radius: 8px;
+  display: none;
+  z-index: 1000;
+}
+
+body.tema-claro .menu-config {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+}

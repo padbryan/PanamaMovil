@@ -344,7 +344,7 @@ input.form-control {
       </div>
 
       <!-- 📋 Resultado principal -->
-      <div id="resultado" class="ficha-resultado"></div>
+      <div id="resultado" class="ficha-resultado"></div>s
 
       <!-- 📁 Historial técnico -->
       <div class="historial-wrapper">
@@ -368,6 +368,7 @@ input.form-control {
   </div>
 <script>
    
+   
    // 🔑 Activar búsqueda con Enter
 
   document.getElementById("inputOwner").addEventListener("keypress", function(e) {
@@ -376,6 +377,17 @@ input.form-control {
     }
   });
 </script>
+
+<button id="btnConfiguracion" onclick="toggleMenuConfiguracion()">⚙️</button>
+
+<div id="menuConfiguracion" class="menu-config">
+  <label>
+    <input type="checkbox" id="toggleTema" onchange="cambiarTema()" />
+    Tema claro
+  </label>
+</div>
+<link rel="stylesheet" href="configuracion.css" />
+<script src="configuracion.js"></script>
 
   <!-- 🔌 Script principal -->
   <script src="script.js"></script>
