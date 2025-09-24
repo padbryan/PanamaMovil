@@ -80,7 +80,7 @@ function limpiarHistorial() {
   if (!confirm("¿Estás seguro de que deseas borrar todo el historial?")) return;
   historial.length = 0;
   mostrarHistorial();
-
+}
 
 // 🧾 Exportar historial en CSV
 function exportarCSV() {
@@ -103,4 +103,15 @@ function exportarCSV() {
   link.click();
   document.body.removeChild(link);
 }
+
+
+function filtrarHistorial() {
+  const filtro = document.getElementById("filtroHistorial").value.trim().toLowerCase();
+  const bloques = document.querySelectorAll(".bloque-historial");
+
+  bloques.forEach(bloque => {
+    const texto = bloque.textContent.toLowerCase();
+    const coincide = texto.includes(filtro);
+    bloque.style.display = coincide ? "block" : "none";
+  });
 }
