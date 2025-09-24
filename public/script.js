@@ -216,8 +216,6 @@ function exportarCSV() {
   const contenido = [encabezados, ...filas].map(fila => fila.join(",")).join("\n");
   const blob = new Blob([contenido], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
-const ahora = new Date().toISOString().slice(0,19).replace(/[:T]/g,"-");
-link.download = `HistorialTecnico-${ahora}.csv`;
 
   const link = document.createElement("a");
   link.href = url;
