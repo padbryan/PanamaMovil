@@ -135,5 +135,31 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
+ // 🧩 Activar menú de alarma
+  const icono = document.getElementById("iconoDesplegar");
+  const menu = document.getElementById("menuAlarma");
+  const campoAlarma = document.getElementById("alarma");
+
+  if (icono && menu && campoAlarma) {
+    icono.addEventListener("click", () => menu.style.display = "block");
+    campoAlarma.addEventListener("input", () => menu.style.display = "none");
+  }
 });
 
+
+// 🧩 Funciones para el campo de alarma editable con menú desplegable
+function mostrarMenuAlarma() {
+  const menu = document.getElementById("menuAlarma");
+  if (menu) menu.style.display = "block";
+}
+
+function ocultarMenuAlarma() {
+  const menu = document.getElementById("menuAlarma");
+  if (menu) menu.style.display = "none";
+}
+
+function seleccionarAlarma(valor) {
+  const campo = document.getElementById("alarma");
+  if (campo) campo.value = valor;
+  ocultarMenuAlarma();
+}
