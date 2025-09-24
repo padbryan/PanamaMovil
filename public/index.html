@@ -200,37 +200,94 @@ input.form-control {
     display: none;
 }
 
-
-/* 📱 Responsive para pantallas pequeñas o zoom bajo */
-@media screen and (max-width: 1200px) {
-  .logo-container img {
-    max-width: 80px;
-  }
-
-  h2.title {
-    font-size: 1.3rem;
-  }
-
-  .ficha-resultado p,
-  .historial-container p {
-    font-size: 0.9rem;
-  }
-
-  .historial-wrapper {
-    padding: 0.75rem;
-  }
-
-  input.form-control,
-  .btn-primary {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
-  .iconos-historial {
-    top: 8px;
-    right: 8px;
-  }
+.buscador-panel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background-color: #111;
+  border: 1px solid #044663cb;
+  padding: 8px;
+  border-radius: 6px;
 }
+
+.buscador-input {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 6px 12px;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.alarma-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+.menu-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #ccc;
+}
+
+.menu-desplegable {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  border-top: none;
+  color: #f1f1f1;
+  display: none;
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 1000;
+  font-size: 14px;
+  margin-top: 2px;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+.menu-desplegable div {
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: background-color 0.2s ease;
+}
+
+.menu-desplegable div:hover {
+  background-color: #87bbf0;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.boton-buscar {
+  background-color: #00aaff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.boton-buscar:hover {
+  background-color: #0099dd;
+}
+
+.boton-buscar:active {
+  transform: scale(0.97);
+}
+
+.lupa-icon {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+
 
 .responsable-tooltip {
   visibility: hidden;
@@ -281,50 +338,36 @@ button.owner:active {
     <div class="card p-4 mb-4">
       <!-- 🔍 Buscador principal -->
       <div class="panel" style="display: flex; align-items: center; gap: 8px; border: 1px solid #044663cb; padding: 8px; background-color: #111;">
-        <!-- Campo de búsqueda por ID o NIS -->
-        <input type="text" id="valor" class="code" placeholder="🔍 Buscar por ID o NIS..." style="background-color: #222; color: #fff; border: 1px solid #444; padding: 6px 12px;" />
-        
-        <!-- Campo de alarma editable con menú desplegable -->
-        <div style="position: relative; flex-grow: 1;" onmouseleave="ocultarMenuAlarma()">
-          <input type="text" id="alarma" class="code" placeholder="🖋 Escribir o seleccionar alarma" style="width: 100%; background-color: #222; color: #fff; border: 1px solid #444; padding: 6px 12px;" />
+       <div class="buscador-panel">
+  <input type="text" id="valor" class="buscador-input" placeholder="🔍 Buscar por ID o NIS..." />
 
-          <span id="iconoDesplegar" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #ccc;" onclick="mostrarMenuAlarma()">🔽</span>
+  <div class="alarma-wrapper" onmouseleave="ocultarMenuAlarma()">
+    <input type="text" id="alarma" class="buscador-input" placeholder="🖋 Escribir o seleccionar alarma" />
+    <span id="iconoDesplegar" class="menu-icon" onclick="mostrarMenuAlarma()">🔽</span>
 
-          <div id="menuAlarma" style="position: absolute; top: 100%; left: 0; width: 100%; background-color: #2a2a2a; border: 1px solid #555; border-top: none; color: #f1f1f1; display: none; max-height: 180px; overflow-y: auto; z-index: 1000; font-size: 14px; margin-top: 2px; padding: 6px;">
-
-            <!-- Opciones de alarma -->
-            <div onclick="seleccionarAlarma('RBS, normaliza energía comercial BTS operativa')">RBS, normaliza energía comercial BTS operativa</div>
-            <div onclick="seleccionarAlarma('RBS, falla de energía comercial | En Baterías')">RBS, falla de energía comercial | En Baterías</div>
-            <div onclick="seleccionarAlarma('RBS, falla de energía comercial | En Generador')">RBS, falla de energía comercial | En Generador</div>
-            <div onclick="seleccionarAlarma('RBS, Heartbeat Failure sin alarmas previas')">RBS, Heartbeat Failure sin alarmas previas</div>
-            <div onclick="seleccionarAlarma('RBS, NE is Disconnected sin alarmas previas')">RBS, NE is Disconnected sin alarmas previas</div>
-            <div onclick="seleccionarAlarma('RBS, falla de sectores LTE')">RBS, falla de sectores LTE</div>
-            <div onclick="seleccionarAlarma('RBS, falla de sectores 3G')">RBS, falla de sectores 3G</div>
-            <div onclick="seleccionarAlarma('RBS, falla de sectores 2G')">RBS, falla de sectores 2G</div>
-            <div onclick="seleccionarAlarma('RBS, culmina respaldo')">RBS, culmina respaldo</div>
-            <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-1')">RBS, FieldReplaceableUnit=PSU-1</div>
-            <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-2')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-2</div>
-            <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-3')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-3</div>
-            <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-4')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-4</div>
-           <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-5')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-5</div>
+    <div id="menuAlarma" class="menu-desplegable">
+      <div onclick="seleccionarAlarma('RBS, normaliza energía comercial BTS operativa')">RBS, normaliza energía comercial BTS operativa</div>
+      <div onclick="seleccionarAlarma('RBS, falla de energía comercial | En Baterías')">RBS, falla de energía comercial | En Baterías</div>
+      <div onclick="seleccionarAlarma('RBS, falla de energía comercial | En Generador')">RBS, falla de energía comercial | En Generador</div>
+      <div onclick="seleccionarAlarma('RBS, Heartbeat Failure sin alarmas previas')">RBS, Heartbeat Failure sin alarmas previas</div>
+      <div onclick="seleccionarAlarma('RBS, NE is Disconnected sin alarmas previas')">RBS, NE is Disconnected sin alarmas previas</div>
+      <div onclick="seleccionarAlarma('RBS, falla de sectores LTE')">RBS, falla de sectores LTE</div>
+      <div onclick="seleccionarAlarma('RBS, falla de sectores 3G')">RBS, falla de sectores 3G</div>
+      <div onclick="seleccionarAlarma('RBS, falla de sectores 2G')">RBS, falla de sectores 2G</div>
+      <div onclick="seleccionarAlarma('RBS, culmina respaldo')">RBS, culmina respaldo</div>
+      <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-1')">RBS, FieldReplaceableUnit=PSU-1</div>
+      <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-2')">RBS, FieldReplaceableUnit=PSU-2</div>
+      <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-3')">RBS, FieldReplaceableUnit=PSU-3</div>
+      <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-4')">RBS, FieldReplaceableUnit=PSU-4</div>
+      <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-5')">RBS, FieldReplaceableUnit=PSU-5</div>
     </div>
-          </div>
-        </div>
-        <button class="owner" onclick="buscar()" style="
-  background-color: #00aaff;
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  font-weight: bold;
-  font-size: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-">
-  🔍 Buscar
-</button>
-      </div>
+  </div>
+
+  <button class="boton-buscar" onclick="buscar()">
+    <span class="lupa-icon">🔍</span>
+  </button>
+</div>
+
 
       <!-- 📋 Resultado principal -->
       <div id="resultado" class="ficha-resultado"></div>
