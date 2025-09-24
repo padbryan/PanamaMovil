@@ -121,4 +121,19 @@ setTimeout(() => {
 }, 0);
 
 
+// 🧠 Inicialización al cargar el DOM
+window.addEventListener("DOMContentLoaded", () => {
+  // ⚙️ Menú de configuración
+  const configToggle = document.getElementById("configToggle");
+  const configMenu = document.getElementById("configMenu");
+
+  if (configToggle && configMenu) {
+    configToggle.addEventListener("click", () => {
+      configMenu.style.display = configMenu.style.display === "none" ? "block" : "none";
+    });
+  }
+
+
+
+});
 
