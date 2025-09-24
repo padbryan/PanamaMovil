@@ -252,17 +252,21 @@ input.form-control {
   visibility: visible;
   opacity: 1;
 }
-.autonomia-icon {
-  display: inline-block;
-  font-weight: bold;
-  animation: pulse 1.5s infinite;
-}
+
 
 @keyframes pulse {
   0% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.1); opacity: 0.7; }
   100% { transform: scale(1); opacity: 1; }
 }
+button.owner:hover {
+  background-color: #0099dd;
+}
+
+button.owner:active {
+  transform: scale(0.97);
+}
+
     /* Ya los tienes definidos en tu proyecto anterior, así que los mantienes tal cual */
 
   </style>
