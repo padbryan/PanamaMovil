@@ -6,12 +6,35 @@ const fetch = require("node-fetch");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+
+app.get("/ping", (req, res) => {
+  res.send("pong desde producción");
+});
+
+
+app.get("/inspeccion", async (req, res) => {
+  try {
+    const response = await fetch(process.env.SHEETS_API_URL);
+    const json = await response.json();
+    res.json(json);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 console.log("Log de peticiones HTTP");
 console.log("🚀 Servidor iniciado en modo desarrollo");
 console.log(`🕒 Última actualización: ${new Date().toLocaleString()}`);
+console.log("🔗 SHEETS_API_URL en producción:", process.env.SHEETS_API_URL);
+
+
+
+
  
 // 🔧 Funciones auxiliares
 const normalize = val => val?.toString().trim().toUpperCase();
@@ -26,9 +49,16 @@ const obtenerCampo = (obj, columna) => {
 async function buscarFicha(valor) {
   const SHEETS_URL = process.env.SHEETS_API_URL;
   const idBuscado = normalize(valor);
+console.log("🧠 Valor recibido:", valor);
+console.log("🧠 Normalizado:", normalize(valor));
 
   const res = await fetch(SHEETS_URL);
-  const datos = await res.json();
+  console.log("🔗 SHEETS_API_URL:", SHEETS_URL);
+ if (!res.ok) {
+  throw new Error(`Error al consultar Sheets: ${res.status} ${res.statusText}`);
+}
+const datos = await res.json();
+
 
   const { DatosEquipos = [], network = [], baterias = [], redcwp = [], SITECWP = [], sitiosVIP = [] } = datos;
 
@@ -112,6 +142,8 @@ app.get("/buscar", async (req, res) => {
 app.get("/status", (req, res) => {
   res.json({ status: "OK", time: new Date().toISOString() });
 });
+
+app.set("trust proxy", true);
 
 app.listen(PORT, () => {
   console.log(`✅ Servidor activo en http://localhost:${PORT}`);

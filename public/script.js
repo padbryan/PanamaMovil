@@ -1,3 +1,5 @@
+const API_URL = "https://panamamovil-production-bf10.up.railway.app";
+
 // 🧩 Captura de teclado
 const input = document.getElementById("valor");
 input.addEventListener("keydown", e => e.key === "Enter" && buscar());
@@ -5,50 +7,36 @@ input.addEventListener("keydown", e => e.key === "Enter" && buscar());
 const resultado = document.getElementById("resultado");
 const historial = [];
 
+// 🔍 Búsqueda principal conectada al backend
 function buscar() {
-  alert("Buscar ejecutado");
-}
-
-
-// 🔍 Búsqueda principal desde backend en Railway
-function buscar() {
-  const valor = document.getElementById("valor").value.trim().toUpperCase();
+  const valor = input.value.trim().toUpperCase();
   const alarmaTexto = document.getElementById("alarma").value.trim();
-  if (!valor) return;
+  if (!valor || !alarmaTexto) {
+    alert("⚠️ Debes ingresar un valor y seleccionar una alarma antes de buscar");
+    return;
+  }
 
-  resultado.innerHTML = `
-    <div class="alert alert-info mt-3 text-center">
-      <span class="spinner-border spinner-border-sm me-2"></span>
-      Consultando ficha técnica...
-    </div>
-  `;
-
-  fetch(`https://panamamovil.up.railway.app/buscar?q=${valor}`)
+  fetch(`${API_URL}/buscar?q=${encodeURIComponent(valor)}`)
     .then(res => {
-      if (!res.ok) throw new Error("Respuesta no válida");
+      if (!res.ok) throw new Error();
       return res.json();
     })
     .then(item => {
-      if (!item || typeof item !== "object" || !item.ID) throw new Error("Sin datos");
-
-      const fondo = detectarFondo(item);
-      agregarAlarmaHtml?.(item, alarmaTexto); // si tienes esta función
-      mostrarResultado(item, fondo);
+      mostrarResultado(item);
       agregarAlHistorial(item, alarmaTexto);
     })
     .catch(() => {
       resultado.innerHTML = `
-        <div class="alert alert-warning mt-3 text-center">
-          <i class="bi bi-exclamation-triangle me-2"></i>
-          No se encontraron datos para <strong>${valor}</strong>
+        <div class="alert alert-warning mt-3">
+          🚫 No se encontraron datos para <strong>${valor}</strong><br>
+          <small>Verifica si escribiste correctamente el ID, NIS o POP. También puedes intentar con otro valor.</small>
         </div>
       `;
     });
 }
 
-
 // 🎨 Renderizado visual del resultado
-function mostrarResultado(item, fondo) {
+function mostrarResultado(item) {
   const campos = Object.entries(item).map(([clave, valor]) => {
     let contenido = valor?.toString().trim() || "—";
 
@@ -92,7 +80,6 @@ function mostrarResultado(item, fondo) {
   });
 
   resultado.innerHTML = `
-    ${fondo !== "transparent" ? `<div class="alert alert-danger mt-3">⚠️ Sitio sin autonomía</div>` : ""}
     <div class="card mt-3 p-3 border-0 shadow-sm">
       ${campos.join("")}
     </div>
@@ -132,7 +119,7 @@ setTimeout(() => {
   });
 }, 0);
 
-// 📋 Historial técnico
+// 📋 Historial visual tipo CWP Móvil
 function agregarAlHistorial(item, alarmaTexto) {
   const registro = {
     ID: item.ID || "—",
@@ -176,15 +163,25 @@ function mostrarHistorial() {
       ? `<span style="color: #2e8131ff;">⚙️ Generador: SI</span>`
       : `<span style="color: #f44336;">❌ Generador: NO</span>`;
 
+    const columnaIzquierda = `
+      <div style="user-select: text; color: #f1f1f1; background-color: #1e1e1e; padding: 6px 12px; border-radius: 4px; font-size: 0.95rem; margin-bottom: 2px;">
+        <strong>-${item.ID}</strong> | ${item["Site Name"]} | ${item.Alarma}
+      </div>
+    `;
+
+    const columnaDerecha = `
+      <div style="user-select: none; color: #aaa; background-color: #1e1e1e; padding: 6px 12px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 2px;">
+        ${item.Provincia} | NIS: ${item.NIS}<br>
+        ${vipTexto}<br>
+        ${bateriasTexto}<br>
+        ${generadorTexto}
+      </div>
+    `;
+
     return `
       <div style="display: flex; gap: 12px; padding-left: 20px; margin-top: 4px;">
-        <div style="flex: 1; user-select: text; color: #f1f1f1; background-color: #1e1e1e; padding: 6px 12px; border-radius: 4px; font-size: 0.95rem;">
-          <strong>-${item.ID}</strong> | ${item["Site Name"]} | ${item.Alarma}
-        </div>
-        <div style="flex: 1; user-select: none; color: #aaa; background-color: #1e1e1e; padding: 6px 12px; border-radius: 4px; font-size: 0.85rem;">
-          ${item.Provincia} | NIS: ${item.NIS}<br>
-          ${vipTexto}<br>${bateriasTexto}<br>${generadorTexto}
-        </div>
+        <div style="flex: 1;">${columnaIzquierda}</div>
+        <div style="flex: 1;">${columnaDerecha}</div>
       </div>
     `;
   }).join("");
@@ -194,16 +191,16 @@ function mostrarHistorial() {
       ${todasLasFilas}
     </div>
   `;
+
   if (wrapper) wrapper.style.display = "block";
 }
 
+// 🧹 Limpiar historial
 function limpiarHistorial() {
   if (historial.length === 0) return alert("⚠️ El historial ya está vacío");
   if (!confirm("¿Estás seguro de que deseas borrar todo el historial?")) return;
   historial.length = 0;
   mostrarHistorial();
-}
-
 
 // 🧾 Exportar historial en CSV
 function exportarCSV() {
@@ -254,3 +251,4 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+}
