@@ -111,7 +111,21 @@ function filtrarHistorial() {
 
   bloques.forEach(bloque => {
     const texto = bloque.textContent.toLowerCase();
-    const coincide = texto.includes(filtro);
-    bloque.style.display = coincide ? "block" : "none";
+    bloque.style.display = texto.includes(filtro) ? "block" : "none";
   });
 }
+
+
+function buscarEnHistorial() {
+  const wrapper = document.getElementById("filtroHistorialWrapper");
+  if (!wrapper) return;
+
+ // Alternar visibilidad con clase animada
+  wrapper.classList.toggle("show");
+
+  // Enfocar el input si se muestra
+  if (wrapper.style.display === "block") {
+    document.getElementById("filtroHistorial").focus();
+  }
+}
+wrapper.classList.toggle("show");
