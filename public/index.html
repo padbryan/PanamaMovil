@@ -15,6 +15,14 @@
   transform-origin: center;
 }
 
+@keyframes ondearBandera {
+  0%   { transform: rotate(0deg) scale(1); }
+  20%  { transform: rotate(1deg) scale(1.02); }
+  40%  { transform: rotate(-1.5deg) scale(1.01); }
+  60%  { transform: rotate(1deg) scale(1.02); }
+  80%  { transform: rotate(-0.5deg) scale(1.01); }
+  100% { transform: rotate(0deg) scale(1); }
+}
 
 body {
   background-color: #121212;
@@ -213,6 +221,21 @@ input.form-control {
 }
 
 
+#ownerResult {
+  margin-left: 8px;
+  font-weight: bold;
+  color: #ccc;
+}
+
+.owner-tag {
+  background-color: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  display: inline-block;
+}
+
 /* 📱 Responsive para pantallas pequeñas o zoom bajo */
 @media screen and (max-width: 1200px) {
   .logo-container img {
@@ -311,11 +334,6 @@ input.form-control {
             <div onclick="seleccionarAlarma('RBS, falla de sectores 2G')">RBS, falla de sectores 2G</div>
             <div onclick="seleccionarAlarma('RBS, culmina respaldo')">RBS, culmina respaldo</div>
             <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-1')">RBS, FieldReplaceableUnit=PSU-1</div>
-            <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-2')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-2</div>
-            <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-3')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-3</div>
-            <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-4')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-4</div>
-            <div onclick="seleccionarAlarma('RBS, FieldReplaceableUnit=PSU-5')" style="cursor: pointer; padding: 4px;">RBS, FieldReplaceableUnit=PSU-5</div>
-    </div>
           </div>
         </div>
         <button class="owner" onclick="buscar()" style="background-color: #00aaff; color: #fff; border: none; padding: 6px 12px; font-weight: bold; cursor: pointer;">Buscar</button>
@@ -352,8 +370,15 @@ input.form-control {
       document.getElementById("btnBuscarOwner").click();
     }
   });
+  
+  // 🔑 Activar búsqueda con Enter
+  document.getElementById("inputOwner").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      document.getElementById("btnBuscarOwner").click();
+    }
+  });
 </script>
-   
+
   <!-- 🔌 Script principal -->
   <script src="script.js"></script>
 </body>
