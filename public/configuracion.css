@@ -8,6 +8,11 @@ body.tema-claro {
   color: #111;
 }
 
+body.modo-compacto * {
+  padding: 4px !important;
+  margin: 2px !important;
+}
+
 .menu-config {
   position: absolute;
   top: 60px;
@@ -16,9 +21,18 @@ body.tema-claro {
   color: #fff;
   border: 1px solid #555;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 12px;
   display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
   z-index: 1000;
+}
+
+.menu-config.activo {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 body.tema-claro .menu-config {
