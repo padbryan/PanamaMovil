@@ -236,6 +236,36 @@ input.form-control {
   display: inline-block;
 }
 
+/* 📱 Responsive para pantallas pequeñas o zoom bajo */
+@media screen and (max-width: 1200px) {
+  .logo-container img {
+    max-width: 80px;
+  }
+
+  h2.title {
+    font-size: 1.3rem;
+  }
+
+  .ficha-resultado p,
+  .historial-container p {
+    font-size: 0.9rem;
+  }
+
+  .historial-wrapper {
+    padding: 0.75rem;
+  }
+
+  input.form-control,
+  .btn-primary {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .iconos-historial {
+    top: 8px;
+    right: 8px;
+  }
+}
 
 .responsable-tooltip {
   visibility: hidden;
@@ -257,26 +287,17 @@ input.form-control {
   visibility: visible;
   opacity: 1;
 }
+.autonomia-icon {
+  display: inline-block;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
+}
 
 @keyframes pulse {
   0% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.1); opacity: 0.7; }
   100% { transform: scale(1); opacity: 1; }
 }
-.icono-svg {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 8px;
-}
-
-.icono-btn {
-  background: transparent;
-  border: none;
-  padding: 6px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
     /* Ya los tienes definidos en tu proyecto anterior, así que los mantienes tal cual */
 
   </style>
@@ -289,59 +310,6 @@ input.form-control {
 
   <div class="container mt-4">
     <div class="card p-4 mb-4">
-
-  <!-- ⚙️ Botón de configuración -->
-<button id="btnConfiguracion" onclick="toggleMenuConfiguracion()" title="Configuración">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-       stroke-width="1.5" stroke="currentColor" class="icono-configuracion">
-    <path stroke-linecap="round" stroke-linejoin="round"
-          d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877..." />
-  </svg>
-</button>
-
-
-<!-- 🧩 Menú de configuración -->
-<div id="menuConfiguracion" class="menu-config">
-  <label>
-    <span class="icono-svg">
-
-
-      <!-- Tema claro -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-      </svg>
-    </span>
-    <input type="checkbox" id="toggleTema" />
-    Tema claro
-  </label>
-
-  <label>
-    <span class="icono-svg">
-      <!-- Tamaño de fuente -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-      </svg>
-    </span>
-    <select id="fuenteSelector">
-      <option value="normal">Fuente normal</option>
-      <option value="grande">Fuente grande</option>
-    </select>
-  </label>
-
-  <label>
-    <span class="icono-svg">
-      <!-- Modo compacto -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-      </svg>
-    </span>
-    <input type="checkbox" id="modoCompacto" />
-    Modo compacto
-  </label>
-</div>
-
-
-
       <!-- 🔍 Buscador principal -->
       <div class="panel" style="display: flex; align-items: center; gap: 8px; border: 1px solid #044663cb; padding: 8px; background-color: #111;">
         <!-- Campo de búsqueda por ID o NIS -->
@@ -376,25 +344,29 @@ input.form-control {
       </div>
 
       <!-- 📋 Resultado principal -->
-      <div id="resultado" class="ficha-resultado"></div>s
+      <div id="resultado" class="ficha-resultado"></div>
 
       <!-- 📁 Historial técnico -->
       <div class="historial-wrapper">
         <div class="card p-3 mt-3 border-0 shadow-sm">
-          <h5 style="color: #f1f1f1; margin-bottom: 12px; font-weight: bold; text-align: center; font-size: 20px;">        
-         <img src="logo-panama.png" alt="Logo Panamá" class="logo-bandera fade-in-logo" style="height: 35px; vertical-align: middle; margin-right: 6px;">
-           
-           CWP MOBILE HISTORY
+          <h5 style="color: #f1f1f1; margin-bottom: 12px; font-weight: bold; text-align: center; font-size: 20px;">
+            <img src="logo-panama.png" alt="Logo Panamá" class="logo-bandera fade-in-logo" style="height: 35px; vertical-align: middle; margin-right: 6px;">
+            CWP MOBILE HISTORY
           </h5>
           <div class="iconos-historial">
-
-
- <div class="historial-wrapper" onmouseenter="mostrarIconosHistorial()" onmouseleave="ocultarIconosHistorial()">
-  <div id="iconosHistorial" class="iconos-historial">
-
-  
+            <button id="btnExportar" class="btn btn-outline-light icono-btn" onclick="exportarCSV()" title="Exportar CSV">
+              <i class="bi bi-download"></i>
+            </button>
+            <button id="btnLimpiar" class="btn btn-outline-danger icono-btn" onclick="limpiarHistorial()" title="Limpiar Historial">
+              <i class="bi bi-trash3"></i>
+            </button>
+          </div>
+          <div id="historial" class="historial-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 <script>
-   
    
    // 🔑 Activar búsqueda con Enter
 
@@ -405,21 +377,7 @@ input.form-control {
   });
 </script>
 
-<script src="historial.js"></script>
-
-
-<link rel="stylesheet" href="configuracion.css" />
-<script src="configuracion.js"></script>
-
   <!-- 🔌 Script principal -->
   <script src="script.js"></script>
-
-
-  <script src="configuracion.js"></script>
-<script src="historial.js"></script>
-<script src="busqueda.js"></script>
-
 </body>
-
-
 </html>
