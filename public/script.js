@@ -11,10 +11,11 @@ const historial = [];
 function buscar() {
   const valor = input.value.trim().toUpperCase();
   const alarmaTexto = document.getElementById("alarma").value.trim();
-  if (!valor || !alarmaTexto) {
-    alert("⚠️ Debes ingresar un valor y seleccionar una alarma antes de buscar");
-    return;
-  }
+  if (!valor) {
+  alert("⚠️ Debes ingresar un valor para buscar");
+  return;
+}
+
 
   fetch(`${API_URL}/buscar?q=${encodeURIComponent(valor)}`)
     .then(res => {
