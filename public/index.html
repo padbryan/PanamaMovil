@@ -202,12 +202,19 @@ input.form-control {
 
 .buscador-panel {
   display: flex;
-  gap: 8px;
   align-items: center;
   background-color: #111;
   border: 1px solid #044663cb;
   padding: 8px;
   border-radius: 6px;
+  gap: 12px;
+}
+
+.campos-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 6px;
 }
 
 .buscador-input {
@@ -216,12 +223,12 @@ input.form-control {
   border: 1px solid #444;
   padding: 6px 12px;
   border-radius: 4px;
-  flex: 1;
+  width: 100%;
 }
 
 .alarma-wrapper {
   position: relative;
-  flex-grow: 1;
+  width: 100%;
 }
 
 .menu-icon {
@@ -267,11 +274,12 @@ input.form-control {
 .boton-buscar {
   background-color: #00aaff;
   border: none;
-  padding: 6px 12px;
+  padding: 10px 14px;
   border-radius: 6px;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   transition: background-color 0.2s ease, transform 0.1s ease;
+  height: fit-content;
 }
 
 .boton-buscar:hover {
@@ -286,6 +294,7 @@ input.form-control {
   font-size: 1.2rem;
   color: #fff;
 }
+
 
 
 
@@ -336,16 +345,19 @@ button.owner:active {
 
   <div class="container mt-4">
     <div class="card p-4 mb-4">
+
+
       <!-- 🔍 Buscador principal -->
       <div class="panel" style="display: flex; align-items: center; gap: 8px; border: 1px solid #044663cb; padding: 8px; background-color: #111;">
        <div class="buscador-panel">
-  <input type="text" id="valor" class="buscador-input" placeholder="🔍 Buscar por ID o NIS..." />
+  <div class="campos-wrapper">
+    <input type="text" id="valor" class="buscador-input" placeholder="🔍 Buscar por ID o NIS..." />
 
-  <div class="alarma-wrapper" onmouseleave="ocultarMenuAlarma()">
-    <input type="text" id="alarma" class="buscador-input" placeholder="🖋 Escribir o seleccionar alarma" />
-    <span id="iconoDesplegar" class="menu-icon" onclick="mostrarMenuAlarma()">🔽</span>
+    <div class="alarma-wrapper" onmouseleave="ocultarMenuAlarma()">
+      <input type="text" id="alarma" class="buscador-input" placeholder="🖋 Escribir o seleccionar alarma" />
+      <span id="iconoDesplegar" class="menu-icon" onclick="mostrarMenuAlarma()">🔽</span>
 
-    <div id="menuAlarma" class="menu-desplegable">
+      <div id="menuAlarma" class="menu-desplegable">
       <div onclick="seleccionarAlarma('RBS, normaliza energía comercial BTS operativa')">RBS, normaliza energía comercial BTS operativa</div>
       <div onclick="seleccionarAlarma('RBS, falla de energía comercial | En Baterías')">RBS, falla de energía comercial | En Baterías</div>
       <div onclick="seleccionarAlarma('RBS, falla de energía comercial | En Generador')">RBS, falla de energía comercial | En Generador</div>
