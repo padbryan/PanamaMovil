@@ -39,6 +39,7 @@ function cambiarTema() {
   localStorage.setItem("tema", esClaro ? "claro" : "oscuro");
 }
 
+
 function cambiarFuente() {
   const valor = document.getElementById("fuenteSelector").value;
   document.body.style.fontSize = valor === "grande" ? "18px" : "14px";
