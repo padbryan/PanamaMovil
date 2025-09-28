@@ -302,16 +302,17 @@ input.form-control {
 }
     /* Ya los tienes definidos en tu proyecto anterior, así que los mantienes tal cual */
 #filtroHistorialWrapper {
-  transition: all 0.3s ease;
+  max-height: 0;
   opacity: 0;
-  height: 0;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 #filtroHistorialWrapper.show {
+  max-height: 100px;
   opacity: 1;
-  height: auto;
 }
+
 
   </style>
 </head>
@@ -371,14 +372,8 @@ input.form-control {
           </h5>
           <div class="iconos-historial">
 
-
-            <button id="btnBuscarHistorial" title="Buscar en historial" onclick="buscarEnHistorial()" style="background: none; border: none; cursor: pointer; padding: 4px;">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 20px; height: 20px; stroke: #ccc;">
-    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-  </svg>
-</button>
-
-<div id="filtroHistorialWrapper" style="display: none; margin-top: 8px;">
+            <!-- 🔍 Campo de búsqueda flotante -->
+<div id="filtroHistorialWrapper" style="display: none; margin-bottom: 12px;">
   <input type="text" id="filtroHistorial" placeholder="🔍 Type to search..." style="
     width: 100%;
     padding: 6px 12px;
@@ -389,6 +384,13 @@ input.form-control {
     font-size: 0.9rem;
   " oninput="filtrarHistorial()" />
 </div>
+
+            <button id="btnBuscarHistorial" title="Buscar en historial" onclick="buscarEnHistorial()" style="background: none; border: none; cursor: pointer; padding: 4px;">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 20px; height: 20px; stroke: #ccc;">
+    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+  </svg>
+</button>
+
 
           <button id="btnExportarHistorial" title="Exportar historial CSV" onclick="exportarCSV()" style="background: none; border: none; cursor: pointer; padding: 4px;">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 20px; height: 20px; stroke: #ccc;">
