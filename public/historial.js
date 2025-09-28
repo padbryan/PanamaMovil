@@ -75,11 +75,15 @@ function mostrarHistorial() {
 }
 
 // 🧹 Limpiar historial
+
 function limpiarHistorial() {
   if (historial.length === 0) return alert("⚠️ El historial ya está vacío");
-  if (!confirm("¿Estás seguro de que deseas borrar todo el historial?")) return;
-  historial.length = 0;
-  mostrarHistorial();
+
+  const confirmar = confirm("¿Estás seguro de que deseas borrar todo el historial?");
+  if (!confirmar) return;
+
+  historial.length = 0; // Vacía el array sin perder la referencia
+  mostrarHistorial();   // Actualiza la vista
 }
 
 // 🧾 Exportar historial en CSV
@@ -119,24 +123,11 @@ function buscarEnHistorial() {
   const wrapper = document.getElementById("filtroHistorialWrapper");
   if (!wrapper) return;
 
- // Alternar visibilidad con clase animada
   wrapper.classList.toggle("show");
 
-  // Enfocar el input si se muestra
-  if (wrapper.style.display === "block") {
-    document.getElementById("filtroHistorial").focus();
+  const input = document.getElementById("filtroHistorial");
+  if (wrapper.classList.contains("show") && input) {
+    input.focus();
   }
 }
-wrapper.classList.toggle("show");
 
-
-function buscarEnHistorial() {
-  const wrapper = document.getElementById("filtroHistorialWrapper");
-  if (!wrapper) return;
-
-  wrapper.style.display = wrapper.style.display === "none" ? "block" : "none";
-
-  if (wrapper.style.display === "block") {
-    document.getElementById("filtroHistorial").focus();
-  }
-}
