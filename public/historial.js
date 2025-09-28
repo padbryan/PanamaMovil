@@ -86,7 +86,7 @@ function limpiarHistorial() {
 function exportarCSV() {
   if (historial.length === 0) return alert("⚠️ No hay datos en el historial");
 
-  const encabezados = ["ID", "Site Name", "Provincia", "NIS", "Clientes VIP", "Codigo del OWNER"];
+  const encabezados = ["ID", "Site Name","Alarma", "Provincia", "NIS","Baterías","Generador", "Provincia", "NIS", "Clientes VIP", "Codigo del OWNER"];
 
   const filas = historial.map(item =>
     encabezados.map(campo => `"${item[campo] || ""}"`)
