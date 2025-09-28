@@ -104,7 +104,6 @@ function exportarCSV() {
   document.body.removeChild(link);
 }
 
-
 function filtrarHistorial() {
   const filtro = document.getElementById("filtroHistorial").value.trim().toLowerCase();
   const bloques = document.querySelectorAll(".bloque-historial");
@@ -129,3 +128,15 @@ function buscarEnHistorial() {
   }
 }
 wrapper.classList.toggle("show");
+
+
+function buscarEnHistorial() {
+  const wrapper = document.getElementById("filtroHistorialWrapper");
+  if (!wrapper) return;
+
+  wrapper.style.display = wrapper.style.display === "none" ? "block" : "none";
+
+  if (wrapper.style.display === "block") {
+    document.getElementById("filtroHistorial").focus();
+  }
+}
