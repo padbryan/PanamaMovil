@@ -58,7 +58,7 @@ function mostrarHistorial() {
     `;
 
     return `
-      <div style="display: flex; gap: 12px; padding-left: 20px; margin-top: 4px;">
+      <div class="bloque-historial" style="display: flex; gap: 12px; padding-left: 20px; margin-top: 4px;">
         <div style="flex: 1;">${columnaIzquierda}</div>
         <div style="flex: 1;">${columnaDerecha}</div>
       </div>
@@ -75,15 +75,14 @@ function mostrarHistorial() {
 }
 
 // 🧹 Limpiar historial
-
 function limpiarHistorial() {
   if (historial.length === 0) return alert("⚠️ El historial ya está vacío");
 
   const confirmar = confirm("¿Estás seguro de que deseas borrar todo el historial?");
   if (!confirmar) return;
 
-  historial.length = 0; // Vacía el array sin perder la referencia
-  mostrarHistorial();   // Actualiza la vista
+  historial.length = 0;
+  mostrarHistorial();
 }
 
 // 🧾 Exportar historial en CSV
@@ -108,17 +107,18 @@ function exportarCSV() {
   document.body.removeChild(link);
 }
 
+// 🔍 Filtrar historial por texto
 function filtrarHistorial() {
   const filtro = document.getElementById("filtroHistorial").value.trim().toLowerCase();
   const bloques = document.querySelectorAll(".bloque-historial");
 
   bloques.forEach(bloque => {
-    const texto = bloque.textContent.toLowerCase();
-    bloque.style.display = texto.includes(filtro) ? "block" : "none";
+    const texto = bloque.innerText.toLowerCase();
+    bloque.style.display = texto.includes(filtro) ? "flex" : "none";
   });
 }
 
-
+// 🔄 Mostrar/ocultar campo de búsqueda
 function buscarEnHistorial() {
   const wrapper = document.getElementById("filtroHistorialWrapper");
   if (!wrapper) return;
@@ -130,4 +130,3 @@ function buscarEnHistorial() {
     input.focus();
   }
 }
-
