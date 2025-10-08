@@ -111,13 +111,21 @@ function exportarCSV() {
 // 🔍 Filtrar historial por texto
 function filtrarHistorial() {
   const filtro = document.getElementById("filtroHistorial").value.trim().toLowerCase();
+  const campo = document.getElementById("campoFiltro").value;
   const bloques = document.querySelectorAll(".bloque-historial");
 
   bloques.forEach(bloque => {
     const texto = bloque.innerText.toLowerCase();
-    bloque.style.display = texto.includes(filtro) ? "flex" : "none";
+
+    if (campo === "todos") {
+      bloque.style.display = texto.includes(filtro) ? "flex" : "none";
+    } else {
+      const campoTexto = bloque.querySelector(`[data-campo="${campo}"]`)?.innerText.toLowerCase() || "";
+      bloque.style.display = campoTexto.includes(filtro) ? "flex" : "none";
+    }
   });
 }
+
 
 
 // 🔄 Mostrar/ocultar campo de búsqueda
@@ -132,3 +140,18 @@ function buscarEnHistorial() {
     input.focus();
   }
 }
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    const wrapper = document.getElementById("filtroHistorialWrapper");
+    if (wrapper) wrapper.style.display = "none";
+  }
+});
+
+<select id="campoFiltro" style="margin-top: 8px; background-color: #222; color: #fff; border: 1px solid #444; padding: 6px;">
+  <option value="todos">🔎 Todos los campos</option>
+  <option value="Provincia">📍 Provincia</option>
+  <option value="Alarma">🚨 Alarma</option>
+  <option value="Site Name">📡 Site Name</option>
+</select>
+
