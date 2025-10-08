@@ -58,11 +58,12 @@ function mostrarHistorial() {
     `;
 
     return `
-      <div class="bloque-historial" style="display: flex; gap: 12px; padding-left: 20px; margin-top: 4px;">
-        <div style="flex: 1;">${columnaIzquierda}</div>
-        <div style="flex: 1;">${columnaDerecha}</div>
-      </div>
-    `;
+  <div class="bloque-historial" style="display: flex; gap: 12px; padding-left: 20px; margin-top: 4px;">
+    <div style="flex: 1;">${columnaIzquierda}</div>
+    <div style="flex: 1;">${columnaDerecha}</div>
+  </div>
+`;
+
   }).join("");
 
   contenedor.innerHTML = `
@@ -118,15 +119,16 @@ function filtrarHistorial() {
   });
 }
 
+
 // 🔄 Mostrar/ocultar campo de búsqueda
 function buscarEnHistorial() {
   const wrapper = document.getElementById("filtroHistorialWrapper");
   if (!wrapper) return;
 
-  wrapper.classList.toggle("show");
+  wrapper.style.display = wrapper.style.display === "none" ? "block" : "none";
 
   const input = document.getElementById("filtroHistorial");
-  if (wrapper.classList.contains("show") && input) {
+  if (wrapper.style.display === "block" && input) {
     input.focus();
   }
 }

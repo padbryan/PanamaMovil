@@ -372,9 +372,9 @@ input.form-control {
           </h5>
           <div class="iconos-historial">
 
-            <!-- 🔍 Campo de búsqueda flotante -->
-<div id="filtroHistorialWrapper" style="display: none; margin-bottom: 12px;">
-  <input type="text" id="filtroHistorial" placeholder="🔍 Type to search..." style="
+         <!-- 🔍 Campo de búsqueda flotante -->
+<div id="filtroHistorialWrapper" style="display: none; margin-top: 12px;">
+  <input type="text" id="filtroHistorial" placeholder="🔍 Buscar en historial..." oninput="filtrarHistorial()" style="
     width: 100%;
     padding: 6px 12px;
     border-radius: 6px;
@@ -382,8 +382,9 @@ input.form-control {
     background-color: #222;
     color: #fff;
     font-size: 0.9rem;
-  " oninput="filtrarHistorial()" />
+  " />
 </div>
+
 
             <button id="btnBuscarHistorial" title="Buscar en historial" onclick="buscarEnHistorial()" style="background: none; border: none; cursor: pointer; padding: 4px;">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 20px; height: 20px; stroke: #ccc;">
