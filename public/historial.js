@@ -52,10 +52,8 @@ function mostrarHistorial() {
     const columnaDerecha = `
       <div style="user-select: none; color: #aaa; background-color: #1e1e1e; padding: 6px 12px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 2px;">
         ${item.Provincia} | NIS: ${item.NIS}<br>
-        ${item.MEDIDOR}<br>
-        ${vipTexto}<br>
-        ${bateriasTexto}<br>
-        ${generadorTexto}
+        ${item.MEDIDOR}<br> |  ${vipTexto}<br>
+        ${bateriasTexto}<br> | ${generadorTexto}
       </div>
     `;
 
