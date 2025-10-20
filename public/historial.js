@@ -6,6 +6,7 @@ function agregarAlHistorial(item, alarmaTexto) {
     Alarma: alarmaTexto || "—",
     Provincia: item.Provincia || "—",
     NIS: item.NIS || "—",
+    MEDIDOR: item.MEDIDOR || "—",
     "Clientes VIP": item["Clientes VIP"] || [],
     "Codigo del OWNER": item["Codigo del OWNER"] || "—",
     Baterías: item["Baterías"] || "—",
@@ -51,6 +52,7 @@ function mostrarHistorial() {
     const columnaDerecha = `
       <div style="user-select: none; color: #aaa; background-color: #1e1e1e; padding: 6px 12px; border-radius: 4px; font-size: 0.85rem; margin-bottom: 2px;">
         ${item.Provincia} | NIS: ${item.NIS}<br>
+        ${item.MEDIDOR}<br>
         ${vipTexto}<br>
         ${bateriasTexto}<br>
         ${generadorTexto}
