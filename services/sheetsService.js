@@ -57,7 +57,7 @@ async function buscarFicha(valor) {
     "Site Name": fichaEquipos["Site Name"] || "—",
     "Clientes VIP": clientesVIP,
     "Propietario": fichaRedCWP.Propietario || "—",
-    "Codigo del OWNER": fichaSiteCWP.Codigos || "—",
+
     "Ubicación": fichaEquipos.Ubicacion || "—",
     "Medidor": fichaEquipos.Medidor || "—",
     "NIS": fichaEquipos.nis || "—",
